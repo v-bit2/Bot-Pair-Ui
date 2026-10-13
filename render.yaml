@@ -1,0 +1,19 @@
+services:
+  # Render Static Site configuration for Vite React App
+  - type: web
+    name: voltra-mini-frontend
+    runtime: static
+    buildCommand: npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        value: ""
+    routes:
+      # Proxy /api requests directly to backend on Render to avoid CORS
+      - type: rewrite
+        source: /api/*
+        destination: https://pro-bot-aykk.onrender.com/api/*
+      # Single Page Application (SPA) routing fallback
+      - type: rewrite
+        source: /*
+        destination: /index.html

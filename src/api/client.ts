@@ -15,7 +15,7 @@ import {
 } from './types';
 
 export const RENDER_BACKEND_URL = 'https://pro-bot-aykk.onrender.com';
-export const DEFAULT_BASE_URL = ''; // Always route via dev server proxy to avoid browser CORS
+export const DEFAULT_BASE_URL = (import.meta.env.VITE_API_BASE_URL as string) || ''; // Allows env override or defaults to relative path (for dev proxy / Render rewrite)
 export const DEFAULT_API_PREFIX = '/api/v1';
 
 // Custom error class with rich HTTP & CORS diagnostic metadata
